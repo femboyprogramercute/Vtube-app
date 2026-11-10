@@ -1,6 +1,7 @@
 name: Build Windows Executable
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
 
@@ -22,9 +23,9 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
 
-    - name: Build EXE with PyInstaller
+    - name: Build EXE with Pyinstaller
       run: |
-        pyinstaller --noconfirm --onedir --windowed --add-data "avatar_cerrado.png;." --add-data "avatar_abierto.png;." main.py
+        pyinstaller --noconfirm --onedir --windowed main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
